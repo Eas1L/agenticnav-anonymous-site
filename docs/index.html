@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AgenticNav | Anonymous Project Page</title>
+  <meta name="description" content="AgenticNav: Zero-Shot Vision-and-Language Navigation as a Tool-Calling Harness. Anonymous research project page.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#070a12">
+  <link rel="stylesheet" href="static/css/index.css?v=1">
+  <script defer src="static/js/index.js?v=1"></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="AgenticNav home">
+      <span class="wordmark-mark" aria-hidden="true">A</span>
+      <span>AgenticNav</span>
+    </a>
+    <nav class="site-nav" aria-label="Page sections">
+      <a href="#video">Video</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+    </nav>
+  </header>
+
+<main id="main-content">
+    <section class="hero" id="top">
+      <div class="ambient ambient-one" aria-hidden="true"></div>
+      <div class="ambient ambient-two" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="hero-meta">
+          <span class="version-label">Anonymous submission · ICRA 2027</span>
+        </div>
+
+        <h1>
+          <span class="title-name">AgenticNav</span>
+          <span class="title-subtitle">Zero-Shot Vision-and-Language Navigation as a Tool-Calling Harness</span>
+        </h1>
+
+        <p class="anonymous-authors">Anonymous Authors</p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#method">Explore the method</a>
+          <a class="button button-secondary" href="#demonstrations">Tool demonstrations</a>
+        </div>
+
+        <div class="tool-rail" aria-label="AgenticNav tool call sequence">
+          <div class="tool-node tool-depth">
+            <span class="tool-index">01</span>
+            <code>query_depth</code>
+            <small>inspect metric evidence</small>
+          </div>
+          <span class="tool-connector" aria-hidden="true">→</span>
+          <div class="tool-node tool-recall">
+            <span class="tool-index">02</span>
+            <code>recall</code>
+            <small>retrieve only what matters</small>
+          </div>
+          <span class="tool-connector" aria-hidden="true">→</span>
+          <div class="tool-node tool-action">
+            <span class="tool-index">03</span>
+            <code>move_to</code>
+            <small>select any visible pixel</small>
+          </div>
+          <span class="tool-connector" aria-hidden="true">→</span>
+          <div class="tool-node tool-stop">
+            <span class="tool-index">04</span>
+            <code>stop</code>
+            <small>finish at the goal</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="teaser-section">
+      <div class="container wide-container">
+        <figure class="figure-shell">
+          <img src="static/images/intro.webp" alt="Comparison between waypoint-based VLN-CE and AgenticNav's action, depth, and memory tools" width="3600" height="1160">
+          <figcaption>
+            AgenticNav reformulates zero-shot VLN-CE as a tool-calling interface that gives the VLM direct, selective access to action, depth, and memory.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="video">
+      <div class="container">
+        <div class="section-heading">
+          <span class="utility-label">Video demonstrations</span>
+          <h2>Video demonstrations are being prepared.</h2>
+        </div>
+        <div class="video-placeholder">
+          <span class="video-placeholder-icon" aria-hidden="true">▶</span>
+          <p>Additional video demonstrations will be added to this page.</p>
+          <a href="#demonstrations">View the illustrated tool demonstrations below</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-panel" id="abstract">
+      <div class="container prose-layout">
+        <div class="section-heading">
+          <span class="utility-label">Abstract</span>
+          <h2>A better harness for zero-shot navigation.</h2>
+        </div>
+        <div class="abstract-copy">
+          <p>Zero-shot vision-and-language navigation in continuous environments (VLN-CE) has recently become feasible with large vision-language models (VLMs). Existing methods typically rely on learned waypoint predictors to propose navigable actions. This limits the model's action space and fails to leverage depth inputs effectively. Moreover, memory is commonly handled by accumulating long textual or visual histories, which overwhelms the prompt context. In this paper, we rethink zero-shot VLN-CE as an agentic interface between the VLM and the environment, and present <strong>AgenticNav</strong>, a lightweight navigation harness that exposes action, depth, and memory as callable tools. Instead of choosing from predicted waypoints, the action tool allows the VLM to directly select a target pixel in RGB observations, converting it into executable motion. Depth is exposed through an on-demand pixel-depth tool, enabling the VLM to request precise metric distances only where they matter. For memory, AgenticNav uses an agentic memory architecture combining reasoning text history and a compact map image, paired with a recall tool that allows the VLM to selectively revisit past visual observations. On R2R-CE, AgenticNav achieves state-of-the-art (SOTA) zero-shot performance under same VLM comparison, reaching 76% success rate and 66.50% SPL. Ablation experiments validate the effectiveness of our tool and memory designs, while backbone evaluations demonstrate more consistent navigation gains as VLMs improve, highlighting the harness's potential to benefit from future VLM advances. Real-world experiments on two distinct robotic platforms further demonstrate its zero-shot generalization and adaptability.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="method">
+      <div class="container">
+        <div class="section-heading heading-centered">
+          <span class="utility-label">Method</span>
+          <h2>Reason broadly. Query precisely. Move directly.</h2>
+          <p>The VLM decides what evidence it needs; deterministic tools handle geometry, memory retrieval, and safety.</p>
+        </div>
+
+        <div class="capability-grid">
+          <article class="capability-card capability-depth">
+            <span class="capability-command">query_depth(points)</span>
+            <h3>On-demand depth</h3>
+            <p>Request metric depth at selected pixels instead of parsing a dense depth map.</p>
+          </article>
+          <article class="capability-card capability-memory">
+            <span class="capability-command">recall(node, view)</span>
+            <h3>Selective memory</h3>
+            <p>Keep recent reasoning and action history alongside a compact trajectory map, and retrieve past views only when they become relevant.</p>
+          </article>
+          <article class="capability-card capability-action">
+            <span class="capability-command">move_to(view, u, v)</span>
+            <h3>Pixel-level action</h3>
+            <p>Choose any visible target point, then convert it into safe, executable continuous motion.</p>
+          </article>
+        </div>
+
+        <figure class="figure-shell method-figure">
+          <img src="static/images/method.webp" alt="AgenticNav architecture showing the depth tool, VLM core, action tool, and agentic memory" width="2400" height="1350" loading="lazy">
+          <figcaption>
+            The VLM queries depth, selectively recalls past observations, and chooses a target pixel. Geometric checks support executable navigation actions.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section section-panel" id="results">
+      <div class="container">
+        <div class="section-heading">
+          <span class="utility-label">Results</span>
+          <h2>The harness changes the outcome.</h2>
+        </div>
+
+        <div class="metrics-grid">
+          <article class="metric-card">
+            <span class="metric-value">76<span>%</span></span>
+            <h3>Success rate</h3>
+            <p>Success rate on the shared 100-episode R2R-CE val_unseen protocol with Gemini-3.7-Flash.</p>
+          </article>
+          <article class="metric-card">
+            <span class="metric-value">66.50<span>%</span></span>
+            <h3>SPL</h3>
+            <p>Success weighted by path length on the same simulation protocol.</p>
+          </article>
+          <article class="metric-card">
+            <span class="metric-value">+22<span>pt</span></span>
+            <h3>Same-backbone SR</h3>
+            <p>Success-rate improvement over SmartWay with Gemini-3.7-Flash, from 54% to 76%.</p>
+          </article>
+          <article class="metric-card">
+            <span class="metric-value">54.3<span>%</span></span>
+            <h3>Real-world SR</h3>
+            <p>Four-view AgenticNav achieves 54.3% success across 35 real-world tasks, compared with 22.9% for SmartWay.</p>
+          </article>
+        </div>
+
+        <p class="results-note">
+          Results correspond to the submitted manuscript. Please refer to the paper for the complete tables, metrics, and evaluation protocol.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="demonstrations">
+      <div class="container wide-container">
+        <div class="section-heading heading-centered">
+          <span class="utility-label">Tool-use demonstrations</span>
+          <h2>Three calls, three navigation bottlenecks removed.</h2>
+        </div>
+
+        <div class="figure-carousel" tabindex="0" aria-roledescription="carousel" aria-label="AgenticNav tool demonstrations">
+          <div class="carousel-viewport">
+            <figure class="carousel-slide is-active" data-slide="0">
+              <img src="static/images/action-tool.webp" alt="Action Tool demonstration comparing direct pixel selection with a waypoint predictor" width="3600" height="858" loading="lazy">
+              <figcaption><strong>Action Tool.</strong> Direct pixel selection bypasses waypoint constraints and preserves goal-aligned actions.</figcaption>
+            </figure>
+            <figure class="carousel-slide" data-slide="1" hidden>
+              <img src="static/images/depth-tool.webp" alt="Depth Tool demonstration using pixel depth queries to time a turn" width="3600" height="767" loading="lazy">
+              <figcaption><strong>Depth Tool.</strong> Precise local depth evidence helps the VLM decide when to continue and when to turn.</figcaption>
+            </figure>
+            <figure class="carousel-slide" data-slide="2" hidden>
+              <img src="static/images/recall-tool.webp" alt="Recall Tool demonstration using a past sign observation for long-horizon navigation" width="1995" height="430" loading="lazy">
+              <figcaption><strong>Recall Tool.</strong> A one-time sign reading becomes a persistent route constraint without a growing frame history.</figcaption>
+            </figure>
+          </div>
+
+          <div class="carousel-controls">
+            <button class="carousel-arrow" type="button" data-direction="-1" aria-label="Previous demonstration">←</button>
+            <div class="carousel-dots" role="tablist" aria-label="Choose demonstration">
+              <button class="carousel-dot is-active" type="button" data-target="0" role="tab" aria-selected="true" aria-label="Action Tool"></button>
+              <button class="carousel-dot" type="button" data-target="1" role="tab" aria-selected="false" aria-label="Depth Tool"></button>
+              <button class="carousel-dot" type="button" data-target="2" role="tab" aria-selected="false" aria-label="Recall Tool"></button>
+            </div>
+            <button class="carousel-arrow" type="button" data-direction="1" aria-label="Next demonstration">→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+</main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>AgenticNav · Anonymous project page.</p>
+      <p>Page structure adapted from the Academic Project Page Template.</p>
+    </div>
+  </footer>
+
+  <button class="scroll-top" type="button" aria-label="Scroll to top">↑</button>
+</body>
+</html>
