@@ -5,7 +5,7 @@ Zero-Shot Vision-and-Language Navigation as a Tool-Calling Harness.
 Anonymous research website for peer review. The static website is in `docs/`.
 
 The page includes five current real-world experiments, an interactive instruction
-player, and step-by-step explanations of the action, depth, and recall tools.
+player, the paper architecture figure, and interactive action, depth, and recall tools.
 The five experiments retain the full recorded task at a constant ten times speed.
 The background contains 25 seconds of selected navigation highlights.
 
